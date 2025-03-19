@@ -54,4 +54,4 @@ def create_app():
 app, server = create_app()
 
 if __name__ == '__main__':
-    server.run(debug=False, host='0.0.0.0', port=9050)
+    server.run(debug=False, host='0.0.0.0', port=9055)
