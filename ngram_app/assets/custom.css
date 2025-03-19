@@ -70,6 +70,34 @@ h1 {
     box-shadow: 0 0 5px #3a56d4;
 }
 
+/* Custom width classes */
+.width-35 {
+  width: 35% !important;
+}
+
+.width-20 {
+  width: 20% !important;
+}
+
+.width-15 {
+  width: 15% !important;
+}
+
+.width-10 {
+  width: 10% !important;
+}
+
+/* For proper flex behavior */
+.custom-flex-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.custom-flex-col {
+  padding: 0 10px;
+}
+
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .navbar-brand {

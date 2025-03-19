@@ -17,15 +17,10 @@ from .utils import (
 # ==========================================
 
 def create_search_controls():
-    """
-    Create the search controls for the application.
-    
-    Returns:
-        dbc.Row: Search controls component
-    """
-    return dbc.Row([
-        # Word input - larger width for main search
-        dbc.Col(
+    """Create the search controls with custom widths."""
+    return html.Div([
+        # Word input
+        html.Div(
             dbc.InputGroup([
                 dbc.InputGroupText("Words:"),
                 dbc.Input(
@@ -36,11 +31,11 @@ def create_search_controls():
                     debounce=True,
                 )
             ]),
-            width=4, className="mb-3"
+            className="custom-flex-col width-35 mb-3"
         ),
         
-        # Corpus dropdown - smaller width
-        dbc.Col(
+        # Corpus dropdown
+        html.Div(
             dbc.InputGroup([
                 dbc.InputGroupText("Corpus:"),
                 dbc.Select(
@@ -49,11 +44,11 @@ def create_search_controls():
                     value='avis',
                 )
             ]),
-            width=2, className="mb-3"
+            className="custom-flex-col width-20 mb-3"
         ),
         
-        # Language dropdown - smaller width
-        dbc.Col(
+        # Language dropdown
+        html.Div(
             dbc.InputGroup([
                 dbc.InputGroupText("Lang:"),
                 dbc.Select(
@@ -63,11 +58,11 @@ def create_search_controls():
                     disabled=True
                 )
             ]),
-            width=2, className="mb-3"
+            className="custom-flex-col width-15 mb-3"
         ),
         
-        # Mode selector - smaller width
-        dbc.Col(
+        # Mode selector
+        html.Div(
             dbc.InputGroup([
                 dbc.InputGroupText("Mode:"),
                 dbc.Select(
@@ -76,11 +71,11 @@ def create_search_controls():
                     value='relative',
                 )
             ]),
-            width=2, className="mb-3"
+            className="custom-flex-col width-20 mb-3"
         ),
         
-        # Settings button - smallest width
-        dbc.Col(
+        # Settings button
+        html.Div(
             dbc.Button(
                 html.I(className="fas fa-bars"), # Hamburger icon
                 id="toggle_sidebar",
@@ -89,10 +84,9 @@ def create_search_controls():
                 outline=True,
                 className="ms-auto d-block"
             ),
-            width=1, className="mb-3 d-flex align-items-center justify-content-end"
+            className="custom-flex-col width-10 mb-3 d-flex align-items-center justify-content-end"
         )
-    ], className="mb-4 g-2 align-items-center")
-
+    ], className="custom-flex-row mb-4 align-items-center")
 def create_chart_component():
     """
     Create the chart component.

@@ -21,7 +21,8 @@ def create_app():
     app = dash.Dash(
         __name__, 
         title="N-gram", 
-        external_stylesheets=[dbc.themes.FLATLY]
+        external_stylesheets=[dbc.themes.FLATLY],
+        suppress_callback_exceptions=True  # Add this line
     )
     
     # Set the app layout
