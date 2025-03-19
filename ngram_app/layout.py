@@ -18,60 +18,21 @@ from .utils import (
 
 def create_search_controls():
     return html.Div([
-        # ✅ Move settings button to the left
-        html.Div(
-            dbc.Button(
-                html.I(className="fas fa-bars"),  # Hamburger icon
-                id="toggle_sidebar",
-                n_clicks=0,
-                color="secondary",
-                outline=True,
-                className="me-2 d-block"
-            ),
-            className="custom-flex-col width-10 mb-3 d-flex align-items-center justify-content-start"
-        ),
-
-        # ✅ Labels on top, inputs below
-        html.Div([
-            html.Label("Words:", className="form-label"),
+        dbc.InputGroup([
             dbc.Input(
                 id='words',
                 type='text',
                 value=DEFAULT_WORD,
                 placeholder='Søk ord (f.eks. frihet, likhet)',
                 debounce=True,
-            )
-        ], className="custom-flex-col width-35 mb-3"),
-
-        html.Div([
-            html.Label("Corpus:", className="form-label"),
-            dbc.Select(
-                id='korpus',
-                options=CORPORA,
-                value='avis',
-            )
-        ], className="custom-flex-col width-20 mb-3"),
-
-        html.Div([
-            html.Label("Lang:", className="form-label"),
-            dbc.Select(
-                id='lang',
-                options=[{'label': l, 'value': l} for l in LANGUAGES],
-                value='nob',
-                disabled=True
-            )
-        ], className="custom-flex-col width-15 mb-3"),
-
-        html.Div([
-            html.Label("Mode:", className="form-label"),
-            dbc.Select(
-                id='mode',
-                options=MODES,
-                value='relative',
-            )
-        ], className="custom-flex-col width-20 mb-3"),
-
-    ], className="custom-flex-row mb-4 align-items-center")
+                className="form-control-lg"  # Larger input field
+            ),
+            dbc.InputGroupText(html.I(className="fas fa-newspaper")),  # Newspaper icon
+            dbc.InputGroupText(html.I(className="fas fa-book")),  # Book icon
+            dbc.InputGroupText(html.I(className="fas fa-font")),  # Font-style (written language)
+            dbc.InputGroupText(html.I(className="fas fa-chart-line")),  # Line graph for style
+        ], className="mb-3 shadow-sm border-0")  # Adding shadow for modern look
+    ])
 
 
 
