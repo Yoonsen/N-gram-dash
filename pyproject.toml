@@ -13,6 +13,7 @@ license = {text = "MIT"}
 
 [tool.pdm]
 distribution = false
+use_venv = false  
 
 [project.scripts]
 ngram-app = "ngram_app.app:main"

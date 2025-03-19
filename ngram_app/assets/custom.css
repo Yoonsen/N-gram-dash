@@ -3,10 +3,12 @@
 /* Main container styling */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;  /* Light gray background */
 }
 
-/* Card styling */
 .card {
+    background-color: white;
+    border-left: 4px solid #4361ee;  /* Accent border */
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease-in-out;
@@ -107,4 +109,8 @@ h1 {
     h1 {
         font-size: 1.8rem;
     }
+    
+  .width-35, .width-20, .width-15, .width-10 {
+    width: 100% !important; /* Makes all inputs full width on small screens */
+  }
 }

@@ -17,76 +17,65 @@ from .utils import (
 # ==========================================
 
 def create_search_controls():
-    """Create the search controls with custom widths."""
     return html.Div([
-        # Word input
-        html.Div(
-            dbc.InputGroup([
-                dbc.InputGroupText("Words:"),
-                dbc.Input(
-                    id='words', 
-                    type='text', 
-                    value=DEFAULT_WORD, 
-                    placeholder='Søk ord (f.eks. frihet, likhet)', 
-                    debounce=True,
-                )
-            ]),
-            className="custom-flex-col width-35 mb-3"
-        ),
-        
-        # Corpus dropdown
-        html.Div(
-            dbc.InputGroup([
-                dbc.InputGroupText("Corpus:"),
-                dbc.Select(
-                    id='korpus', 
-                    options=CORPORA, 
-                    value='avis',
-                )
-            ]),
-            className="custom-flex-col width-20 mb-3"
-        ),
-        
-        # Language dropdown
-        html.Div(
-            dbc.InputGroup([
-                dbc.InputGroupText("Lang:"),
-                dbc.Select(
-                    id='lang', 
-                    options=[{'label': l, 'value': l} for l in LANGUAGES], 
-                    value='nob',
-                    disabled=True
-                )
-            ]),
-            className="custom-flex-col width-15 mb-3"
-        ),
-        
-        # Mode selector
-        html.Div(
-            dbc.InputGroup([
-                dbc.InputGroupText("Mode:"),
-                dbc.Select(
-                    id='mode', 
-                    options=MODES, 
-                    value='relative',
-                )
-            ]),
-            className="custom-flex-col width-20 mb-3"
-        ),
-        
-        # Settings button
+        # ✅ Move settings button to the left
         html.Div(
             dbc.Button(
-                html.I(className="fas fa-bars"), # Hamburger icon
+                html.I(className="fas fa-bars"),  # Hamburger icon
                 id="toggle_sidebar",
                 n_clicks=0,
                 color="secondary",
                 outline=True,
-                className="ms-auto d-block"
+                className="me-2 d-block"
             ),
-            className="custom-flex-col width-10 mb-3 d-flex align-items-center justify-content-end"
-        )
+            className="custom-flex-col width-10 mb-3 d-flex align-items-center justify-content-start"
+        ),
+
+        # ✅ Labels on top, inputs below
+        html.Div([
+            html.Label("Words:", className="form-label"),
+            dbc.Input(
+                id='words',
+                type='text',
+                value=DEFAULT_WORD,
+                placeholder='Søk ord (f.eks. frihet, likhet)',
+                debounce=True,
+            )
+        ], className="custom-flex-col width-35 mb-3"),
+
+        html.Div([
+            html.Label("Corpus:", className="form-label"),
+            dbc.Select(
+                id='korpus',
+                options=CORPORA,
+                value='avis',
+            )
+        ], className="custom-flex-col width-20 mb-3"),
+
+        html.Div([
+            html.Label("Lang:", className="form-label"),
+            dbc.Select(
+                id='lang',
+                options=[{'label': l, 'value': l} for l in LANGUAGES],
+                value='nob',
+                disabled=True
+            )
+        ], className="custom-flex-col width-15 mb-3"),
+
+        html.Div([
+            html.Label("Mode:", className="form-label"),
+            dbc.Select(
+                id='mode',
+                options=MODES,
+                value='relative',
+            )
+        ], className="custom-flex-col width-20 mb-3"),
+
     ], className="custom-flex-row mb-4 align-items-center")
+
+
+
+
 def create_chart_component():
     """
     Create the chart component.
@@ -96,10 +85,44 @@ def create_chart_component():
     """
     return dbc.Card([
         dbc.CardBody([
-            dcc.Graph(id='ngram_chart', style={'height': '70vh'}),
-            html.Div(id='content_summary', className="text-muted small mt-2")
+            dcc.Graph(
+                id='ngram_chart', 
+                style={'height': '70vh'}, 
+                config={'scrollZoom': True},  # ✅ Allow zooming (useful)
+                clickData=None  # ✅ Ensure click data is initialized
+            ),
+
+            # ✅ ADD THIS: Summary below the graph
+            html.Div(id='content_summary', className="text-muted small mt-2"),
+
+            # Click output text
+            html.Div(id='graph_click_output', className="text-muted small mt-2"),
+
+            # Search options dropdown (hidden initially)
+            dbc.Collapse(
+                dbc.Card([
+                    dbc.CardBody([
+                        html.P("Hva vil du søke etter?", className="fw-bold"),
+                        dbc.Select(
+                            id="search_option",
+                            options=[
+                                {"label": "Søk i dette året", "value": "year"},
+                                {"label": "Søk i denne perioden", "value": "period"},
+                                {"label": "Søk i hele arkivet", "value": "all"}
+                            ],
+                            placeholder="Velg søk...",
+                        ),
+                        dbc.Button("Utfør søk", id="search_button", color="primary", className="mt-2"),
+                        html.Div(id="search_result", className="mt-3 text-muted")
+                    ])
+                ]),
+                id="search_collapse",
+                is_open=False  # Initially hidden
+                
+            )
         ])
     ])
+
 
 def create_sidebar():
     """
@@ -194,7 +217,6 @@ def create_sidebar():
         is_open=False,
         placement="end"
     )
-
 def create_layout():
     """
     Create the main application layout.
