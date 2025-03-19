@@ -1,0 +1,82 @@
+/* Custom styling for N-gram app */
+
+/* Main container styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Card styling */
+.card {
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Input styling */
+.form-control:focus, .form-select:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Button styling */
+.btn-primary {
+    background-color: #4361ee;
+    border-color: #4361ee;
+}
+
+.btn-primary:hover {
+    background-color: #3a56d4;
+    border-color: #3a56d4;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+/* Header styling */
+h1 {
+    color: #333;
+    font-weight: 600;
+}
+
+/* Tooltip styling */
+.tooltip-inner {
+    max-width: 200px;
+    padding: 8px 12px;
+    background-color: #333;
+    border-radius: 4px;
+}
+
+/* Slider styling */
+.rc-slider-track {
+    background-color: #4361ee;
+}
+
+.rc-slider-handle {
+    border-color: #4361ee;
+}
+
+.rc-slider-handle:hover {
+    border-color: #3a56d4;
+}
+
+.rc-slider-handle:active {
+    border-color: #3a56d4;
+    box-shadow: 0 0 5px #3a56d4;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.1rem;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+}
